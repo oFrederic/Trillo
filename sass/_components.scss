@@ -11,6 +11,12 @@
   align-items: center;
   justify-content: center;
 
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input {
     font-size: inherit;
     font-family: inherit;
@@ -114,16 +120,34 @@
 }
 
 /////////// SIDE NAVIGATION //////////
+
+.side-nav__icon {
+  margin-right: 0;
+}
+
 .side-nav {
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
 
   &__item {
     position: relative;
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
 
     &::before {
@@ -161,6 +185,17 @@
     justify-items: center;
     position: relative;
     z-index: 1;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   &__icon {
@@ -168,6 +203,13 @@
     height: 1.75rem;
     margin-right: 2rem;
     fill: currentColor;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
@@ -176,6 +218,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 ///////////// PHOTO GALLERY /////////////
@@ -198,6 +244,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -235,17 +286,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
     padding-bottom: 3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 
@@ -326,15 +389,19 @@
     margin-right: 0.7rem;
 
     // Older browsers
-    //background-image: url(../img/SVG/chevron-thin-right.svg);
-    //background-size: cover;
+    background-image: url(../img/SVG/chevron-thin-right.svg);
+    background-size: cover;
 
     // Newer browsers - masks
-    background-color: var(--color-primary);
-    mask-image: url(../img/SVG/chevron-thin-right.svg);
-    -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
-    mask-size: cover;
-    -webkit-mask-size: cover;
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+      background-image: none;
+
+      background-color: var(--color-primary);
+      mask-image: url(../img/SVG/chevron-thin-right.svg);
+      -webkit-mask-image: url(../img/SVG/chevron-thin-right.svg);
+      mask-size: cover;
+      -webkit-mask-size: cover;
+    }
   }
 }
 
@@ -350,6 +417,10 @@
     margin-right: auto;
   }
 
+  &__friends {
+    display: flex;
+  }
+
   &__photo {
     height: 4rem;
     width: 4rem;
@@ -358,7 +429,7 @@
     box-sizing: content-box;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -370,6 +441,11 @@
   padding: 3rem;
   margin-bottom: 3.5rem;
   position: relative;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     position: relative;
@@ -442,6 +518,10 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
 
   &__book-now {
     text-transform: uppercase;
